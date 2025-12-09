@@ -14,5 +14,7 @@ dependencies = [
     "openai>=2.9.0",
     "openai-agents>=0.6.2",
     "speckit>=1.0.1",
+    "tailwind>=3.1.5b0",
+    "typescript>=0.0.12",
     "wikipedia>=1.4.0",
 ]

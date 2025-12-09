@@ -16,6 +16,8 @@ dependencies = [
     { name = "openai" },
     { name = "openai-agents" },
     { name = "speckit" },
+    { name = "tailwind" },
+    { name = "typescript" },
     { name = "wikipedia" },
 ]
 
@@ -30,6 +32,8 @@ requires-dist = [
     { name = "openai", specifier = ">=2.9.0" },
     { name = "openai-agents", specifier = ">=0.6.2" },
     { name = "speckit", specifier = ">=1.0.1" },
+    { name = "tailwind", specifier = ">=3.1.5b0" },
+    { name = "typescript", specifier = ">=0.0.12" },
     { name = "wikipedia", specifier = ">=1.4.0" },
 ]
 
@@ -1741,6 +1745,18 @@ wheels = [
 ]
 
 [[package]]
+name = "tailwind"
+version = "3.1.5b0"
+source = { registry = "https://pypi.org/simple" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b1/c6/a265bf8cea8d8c17e4e721abe3d99cece6b515f0c8d8320b1af2ead8d347/tailwind-3.1.5b0-py3-none-macosx_10_9_x86_64.whl", hash = "sha256:6baf950e4487794df56db3c2f749d2d35c91e9ac54cacd82220d91a199b19c40", size = 19496122, upload-time = "2022-07-09T16:00:05.894Z" },
+    { url = "https://files.pythonhosted.org/packages/d8/73/b27d2bfddb40f24df0e4db6aa81eeeb480b0b41d034129b50d62d1fe527f/tailwind-3.1.5b0-py3-none-macosx_11_0_arm64.whl", hash = "sha256:0934b76c6afb45e0601a4acc4ef7d57701249978c53d6ccff4ea0c85263369cf", size = 17805712, upload-time = "2022-07-09T16:00:09.928Z" },
+    { url = "https://files.pythonhosted.org/packages/39/55/0891c7e8374fac43b59431b2635987b7742ed24f20d7eadf879b44d058f6/tailwind-3.1.5b0-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.manylinux_2_24_aarch64.whl", hash = "sha256:97974629edd0ce595794fdb40d3318c259e7992d67461949cb5687d1ab9faf48", size = 16196897, upload-time = "2022-07-09T16:00:13.536Z" },
+    { url = "https://files.pythonhosted.org/packages/46/15/e17a4b708d615ce6e6c36783a698f5e75c92edb73c75453a1dadc81ecddb/tailwind-3.1.5b0-py3-none-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:f61e4a1dd2d43076af818fa8281f2624a34c3d4d8aed2045538f03cfdfde438a", size = 17622295, upload-time = "2022-07-09T16:00:16.887Z" },
+    { url = "https://files.pythonhosted.org/packages/58/da/70fa56d15df78bd07905c9e48dad7c27aba9c07a177e1c92a39d1fd53361/tailwind-3.1.5b0-py3-none-win_amd64.whl", hash = "sha256:96fcb172730926c48c5a6e35d614259b00e35c89805932e0b671239504d13acb", size = 15922905, upload-time = "2022-07-09T16:00:20.381Z" },
+]
+
+[[package]]
 name = "texttable"
 version = "1.7.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1772,6 +1788,12 @@ sdist = { url = "https://files.pythonhosted.org/packages/36/27/489922f4505975b11
 wheels = [
     { url = "https://files.pythonhosted.org/packages/2a/20/9a227ea57c1285986c4cf78400d0a91615d25b24e257fd9e2969606bdfae/types_requests-2.32.4.20250913-py3-none-any.whl", hash = "sha256:78c9c1fffebbe0fa487a418e0fa5252017e9c60d1a2da394077f1780f655d7e1", size = 20658, upload-time = "2025-09-13T02:40:01.115Z" },
 ]
+
+[[package]]
+name = "typescript"
+version = "0.0.12"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/2f/d9/2918a9a72378efe0322cf751359a28f603b07e230bec0436e19ea95e8404/typescript-0.0.12.tar.gz", hash = "sha256:4f077b58d0a69ddd45f8f32caaf9d5d1e018630ffe1d33b095a0398f5cd51d9b", size = 1745, upload-time = "2020-08-14T14:18:38.341Z" }
 
 [[package]]
 name = "typing-extensions"
