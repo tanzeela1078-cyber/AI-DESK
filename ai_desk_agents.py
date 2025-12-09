@@ -339,7 +339,7 @@ async def ai_desk():
     
     # Step 5: Print final output
     print("===== AI DESK NEWS OUTPUT =====")
-    print(writer_result.final_output)
+    print(writer_result.final_output) 
 # Run the AI Desk
 if __name__ == "__main__":
     asyncio.run(ai_desk())
