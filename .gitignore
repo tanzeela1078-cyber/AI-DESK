@@ -1,12 +1,36 @@
-# Python-generated files
+# ----------------------------
+# Python cache & build files
+# ----------------------------
 __pycache__/
-*.py[oc]
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
 build/
 dist/
 wheels/
-*.egg-info
 
+# ----------------------------
+# Environment variables files
+# ----------------------------
+.env
+*.env
+
+# ----------------------------
 # Virtual environments
-.venv
+# ----------------------------
+.venv/
+venv/
+env/
 
-.vercel
+# ----------------------------
+# OS / Editor files
+# ----------------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------------
+# Vercel build folder
+# ----------------------------
+.vercel/
