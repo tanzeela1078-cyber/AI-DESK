@@ -5,22 +5,61 @@ import { useNews } from '@/contexts/NewsContext';
 import NewsCard from './NewsCard';
 
 export default function NewsFeed() {
-    const { filteredArticles, searchQuery } = useNews();
+    const { filteredArticles, searchQuery, isLoading } = useNews();
 
+    // Loading skeleton (Test Case 8)
+    if (isLoading) {
+        return (
+            <div className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                    {[...Array(6)].map((_, idx) => (
+                        <div key={idx} className="bg-[var(--bg-secondary)] rounded-card overflow-hidden animate-fade-in">
+                            {/* Skeleton thumbnail */}
+                            <div className="h-48 skeleton"></div>
+                            {/* Skeleton content */}
+                            <div className="p-4 space-y-3">
+                                <div className="flex gap-2">
+                                    <div className="h-5 w-16 skeleton"></div>
+                                    <div className="h-5 w-16 skeleton"></div>
+                                </div>
+                                <div className="h-6 skeleton"></div>
+                                <div className="h-6 w-3/4 skeleton"></div>
+                                <div className="space-y-2">
+                                    <div className="h-4 skeleton"></div>
+                                    <div className="h-4 skeleton"></div>
+                                    <div className="h-4 w-5/6 skeleton"></div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+    }
+
+    // Error state (Test Case 12)
     if (filteredArticles.length === 0) {
         return (
-            <div className="flex flex-col items-center justify-center py-20">
-                <svg className="w-24 h-24 text-[var(--text-secondary)] opacity-50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="error-container">
+                <svg className="error-icon text-[var(--text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <h3 className="text-xl font-heading font-semibold text-[var(--text-primary)] mb-2">
-                    {searchQuery ? 'No results found' : 'No articles yet'}
+                <h3 className="error-message">
+                    {searchQuery ? 'No results found' : 'No news yet'}
                 </h3>
-                <p className="text-[var(--text-secondary)] text-center max-w-md">
+                <p className="error-description">
                     {searchQuery
-                        ? 'Try adjusting your search or filters'
-                        : 'Articles will appear here once the AI agents fetch news. Click the refresh button to generate news.'}
+                        ? 'Try adjusting your search or filters to find what you\'re looking for.'
+                        : 'News will appear here once the AI agents fetch updates. Click the refresh button to generate news.'}
                 </p>
+                {!searchQuery && (
+                    <button
+                        onClick={() => window.location.reload()}
+                        className="px-6 py-2 bg-[var(--accent-primary)] text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
+                    >
+                        Refresh News
+                    </button>
+                )}
             </div>
         );
     }
@@ -44,7 +83,7 @@ export default function NewsFeed() {
                         </svg>
                         Video Content
                     </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                         {articlesWithVideos.map((article, idx) => (
                             <NewsCard key={article.id || idx} article={article} priority={idx < 3} />
                         ))}
@@ -62,7 +101,7 @@ export default function NewsFeed() {
                         </svg>
                         Articles & Insights
                     </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                         {articlesWithoutVideos.map((article, idx) => (
                             <NewsCard key={article.id || idx} article={article} />
                         ))}
@@ -72,7 +111,7 @@ export default function NewsFeed() {
 
             {/* All Articles (if no separation needed) */}
             {articlesWithVideos.length === 0 && articlesWithoutVideos.length === 0 && filteredArticles.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                     {filteredArticles.map((article, idx) => (
                         <NewsCard key={article.id || idx} article={article} priority={idx < 6} />
                     ))}

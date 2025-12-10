@@ -31,7 +31,7 @@ export default function HeroCarousel() {
     const thumbnail = videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : null;
 
     return (
-        <div className="relative h-[500px] rounded-card overflow-hidden mb-8 group">
+        <div className="relative h-[300px] md:h-[500px] rounded-card overflow-hidden mb-8 group">
             {/* Background Image */}
             <div className="absolute inset-0">
                 {thumbnail ? (
@@ -113,8 +113,8 @@ export default function HeroCarousel() {
                         key={idx}
                         onClick={() => setCurrentSlide(idx)}
                         className={`w-3 h-3 rounded-full transition-all ${idx === currentSlide
-                                ? 'bg-white w-8'
-                                : 'bg-white/50 hover:bg-white/75'
+                            ? 'bg-white w-8'
+                            : 'bg-white/50 hover:bg-white/75'
                             }`}
                         aria-label={`Go to slide ${idx + 1}`}
                     />

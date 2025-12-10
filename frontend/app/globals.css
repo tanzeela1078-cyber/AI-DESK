@@ -130,3 +130,387 @@ html {
   background: rgba(42, 42, 52, 0.6);
   border: 1px solid rgba(77, 255, 254, 0.1);
 }
+
+/* ============================================================================
+   LOADING SKELETONS & SHIMMER UI (Test Case 8)
+   ============================================================================ */
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-secondary) 0%,
+    var(--bg-primary) 50%,
+    var(--bg-secondary) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 8px;
+}
+
+.dark .skeleton {
+  background: linear-gradient(
+    90deg,
+    #2A2A34 0%,
+    #353542 50%,
+    #2A2A34 100%
+  );
+  background-size: 1000px 100%;
+}
+
+/* ============================================================================
+   ACCESSIBILITY (Test Case 15)
+   ============================================================================ */
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip to main content link */
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--accent-primary);
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-to-main:focus {
+  top: 0;
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ============================================================================
+   SMOOTH TRANSITIONS (Test Cases 4, 7, 14)
+   ============================================================================ */
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes modalFadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+}
+
+.modal-enter {
+  animation: modalFadeIn 0.3s ease-out forwards;
+}
+
+.modal-exit {
+  animation: modalFadeOut 0.2s ease-in forwards;
+}
+
+/* ============================================================================
+   HOVER EFFECTS (Test Case 7)
+   ============================================================================ */
+
+.card-hover-effect {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* Prevent jitter on hover */
+.no-jitter {
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* ============================================================================
+   SCROLL PERFORMANCE (Test Case 10)
+   ============================================================================ */
+
+/* Enable GPU acceleration for smooth scrolling */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Optimize scroll performance */
+.scroll-container {
+  will-change: scroll-position;
+  contain: layout style paint;
+}
+
+/* Infinite scroll loader */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+/* ============================================================================
+   TEXT TRUNCATION (Test Cases 5, 6)
+   ============================================================================ */
+
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ============================================================================
+   IMAGE HANDLING (Test Case 3)
+   ============================================================================ */
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+
+.image-container img {
+  object-fit: cover;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.image-container img.loading {
+  opacity: 0;
+}
+
+.image-container img.loaded {
+  opacity: 1;
+}
+
+/* Image placeholder */
+.image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  color: var(--text-secondary);
+}
+
+/* ============================================================================
+   DARK MODE ADJUSTMENTS (Test Case 9)
+   ============================================================================ */
+
+.dark img {
+  filter: brightness(0.9);
+}
+
+.dark .image-placeholder {
+  background: linear-gradient(135deg, #2A2A34 0%, #1B1B23 100%);
+}
+
+/* Ensure proper contrast in dark mode */
+.dark {
+  --border-color: rgba(255, 255, 255, 0.1);
+  --bg-tertiary: #353542;
+}
+
+:root {
+  --border-color: rgba(0, 0, 0, 0.1);
+  --bg-tertiary: #E8E8EA;
+}
+
+/* ============================================================================
+   SOURCE BADGES (Test Case 13)
+   ============================================================================ */
+
+.badge-youtube {
+  background: #FF0000;
+  color: white;
+}
+
+.badge-google {
+  background: #4285F4;
+  color: white;
+}
+
+.badge-forbes {
+  background: #10A64A;
+  color: white;
+}
+
+.badge-wikipedia {
+  background: #000000;
+  color: white;
+}
+
+.dark .badge-wikipedia {
+  background: #FFFFFF;
+  color: #000000;
+}
+
+/* ============================================================================
+   SEARCH BAR ENHANCEMENTS (Test Case 11)
+   ============================================================================ */
+
+.search-input {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-input:focus {
+  transform: scale(1.02);
+  box-shadow: 0 0 0 3px rgba(108, 142, 224, 0.1);
+}
+
+.dark .search-input:focus {
+  box-shadow: 0 0 0 3px rgba(77, 255, 254, 0.1);
+}
+
+/* ============================================================================
+   ERROR STATES (Test Case 12)
+   ============================================================================ */
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.error-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1.5rem;
+  opacity: 0.5;
+}
+
+.error-message {
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.error-description {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+  max-width: 400px;
+}
+
+/* ============================================================================
+   RESPONSIVE UTILITIES (Test Case 2)
+   ============================================================================ */
+
+/* Prevent text overflow on all screen sizes */
+.responsive-text {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Ensure no horizontal overflow */
+.no-overflow {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* ============================================================================
+   PERFORMANCE OPTIMIZATIONS
+   ============================================================================ */
+
+/* Reduce repaints and reflows */
+.optimized {
+  contain: layout style paint;
+  content-visibility: auto;
+}
+
+/* Hardware acceleration */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* ============================================================================
+   CONTRAST RATIOS (Test Case 5)
+   ============================================================================ */
+
+/* Ensure minimum 4.5:1 contrast ratio */
+:root {
+  --text-high-contrast: #1A1A1A;
+  --text-medium-contrast: #4A4A4A;
+}
+
+.dark {
+  --text-high-contrast: #FFFFFF;
+  --text-medium-contrast: #CCCCCC;
+}
+
+.high-contrast-text {
+  color: var(--text-high-contrast);
+}
+
+.medium-contrast-text {
+  color: var(--text-medium-contrast);
+}

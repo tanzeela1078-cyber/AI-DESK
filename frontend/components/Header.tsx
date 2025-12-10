@@ -28,7 +28,7 @@ export default function Header() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center space-x-2">
+                    <Link href="/" className="flex items-center space-x-2 flex-shrink-0">
                         <div className="w-10 h-10 bg-gradient-to-br from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-lg flex items-center justify-center">
                             <span className="text-white font-bold text-xl">AI</span>
                         </div>
@@ -37,8 +37,8 @@ export default function Header() {
                         </span>
                     </Link>
 
-                    {/* Navigation */}
-                    <nav className="hidden md:flex items-center space-x-8">
+                    {/* Navigation - Hidden on smaller screens to prevent overlap */}
+                    <nav className="hidden xl:flex items-center space-x-6">
                         <Link href="/" className="text-[var(--text-primary)] hover:text-[var(--accent-primary)] transition-colors font-medium">
                             Home
                         </Link>
@@ -56,35 +56,51 @@ export default function Header() {
                         </Link>
                     </nav>
 
-                    {/* Search Bar */}
-                    <div className="hidden lg:flex items-center flex-1 max-w-md mx-8">
+                    {/* Search Bar (Test Case 11) */}
+                    <div className="hidden md:flex items-center flex-1 max-w-md mx-4 lg:mx-8">
                         <div className="relative w-full">
                             <input
                                 type="text"
                                 placeholder="Search AI news..."
                                 value={searchInput}
                                 onChange={handleSearchChange}
-                                className="w-full px-4 py-2 pl-10 bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-full focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)] transition-all"
+                                className="search-input w-full px-4 py-2 pl-10 pr-10 bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-full focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)] transition-all"
+                                aria-label="Search AI news"
                             />
                             <svg
                                 className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[var(--text-secondary)]"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
+                                aria-hidden="true"
                             >
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
+                            {searchInput && (
+                                <button
+                                    onClick={() => {
+                                        setSearchInput('');
+                                        setSearchQuery('');
+                                    }}
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                                    aria-label="Clear search"
+                                >
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            )}
                         </div>
                     </div>
 
                     {/* Actions */}
-                    <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-2 md:space-x-4 flex-shrink-0">
                         {/* Video Mode Toggle */}
                         <button
                             onClick={() => setVideoMode(!videoMode)}
                             className={`hidden md:flex items-center space-x-2 px-3 py-1.5 rounded-full transition-all ${videoMode
-                                    ? 'bg-[var(--accent-primary)] text-white'
-                                    : 'bg-[var(--bg-secondary)] text-[var(--text-secondary)]'
+                                ? 'bg-[var(--accent-primary)] text-white'
+                                : 'bg-[var(--bg-secondary)] text-[var(--text-secondary)]'
                                 }`}
                             title="Toggle Video Mode"
                         >

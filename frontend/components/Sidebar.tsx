@@ -5,9 +5,9 @@ import { useNews } from '@/contexts/NewsContext';
 
 export default function Sidebar() {
     const { filters, setFilters } = useNews();
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
-    const contentTypes = ['video', 'article', 'wikipedia'];
+    const contentTypes = ['news', 'video', 'wikipedia'];
     const sources = ['YouTube', 'Google', 'Forbes', 'Wikipedia'];
     const topics = ['GPT', 'Gemini', 'Llama', 'AI regulation', 'Machine Learning', 'Deep Learning'];
     const sortOptions = [
@@ -51,7 +51,8 @@ export default function Sidebar() {
             {/* Mobile Toggle Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="lg:hidden fixed bottom-4 right-4 z-50 p-3 bg-[var(--accent-primary)] text-white rounded-full shadow-lg"
+                className="lg:hidden fixed bottom-4 right-4 z-50 p-3 bg-[var(--accent-primary)] text-white rounded-full shadow-lg hover:bg-[var(--accent-secondary)] transition-colors"
+                aria-label="Toggle Filters"
             >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
@@ -62,7 +63,7 @@ export default function Sidebar() {
             <aside
                 className={`
           fixed lg:sticky top-16 right-0 h-[calc(100vh-4rem)] lg:h-auto
-          w-80 lg:w-64 bg-[var(--bg-secondary)] border-l lg:border-l-0 lg:border-r border-[var(--bg-primary)]
+          w-80 lg:w-64 flex-shrink-0 bg-[var(--bg-secondary)] border-l border-[var(--bg-primary)]
           overflow-y-auto p-6 space-y-6 transition-transform duration-300 z-40
           ${isOpen ? 'translate-x-0' : 'translate-x-full lg:translate-x-0'}
         `}
@@ -143,8 +144,8 @@ export default function Sidebar() {
                                 key={topic}
                                 onClick={() => toggleTopic(topic)}
                                 className={`px-3 py-1 text-xs rounded-full transition-all ${filters.topics.includes(topic)
-                                        ? 'bg-[var(--accent-primary)] text-white'
-                                        : 'bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:bg-[var(--accent-primary)] hover:text-white'
+                                    ? 'bg-[var(--accent-primary)] text-white'
+                                    : 'bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:bg-[var(--accent-primary)] hover:text-white'
                                     }`}
                             >
                                 {topic}

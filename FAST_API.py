@@ -60,3 +60,9 @@ async def get_news():
 async def health_check():
     """Health check endpoint."""
     return {"status": "healthy", "timestamp": datetime.now(timezone.utc).isoformat()}
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("FAST_API:app", host="0.0.0.0", port=8000, reload=True)
+

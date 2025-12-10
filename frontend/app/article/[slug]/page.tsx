@@ -21,10 +21,10 @@ export default function ArticlePage() {
                 <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                     <div className="text-center">
                         <h1 className="text-4xl font-heading font-bold text-[var(--text-primary)] mb-4">
-                            Article Not Found
+                            News Not Found
                         </h1>
                         <p className="text-[var(--text-secondary)] mb-8">
-                            The article you're looking for doesn't exist or has been removed.
+                            The news item you're looking for doesn't exist or has been removed.
                         </p>
                         <Link
                             href="/"

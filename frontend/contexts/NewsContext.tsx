@@ -34,19 +34,29 @@ export function NewsProvider({ children }: { children: React.ReactNode }) {
 
     // Load cached articles on mount
     useEffect(() => {
-        const cached = getCachedArticles();
-        setArticles(cached);
+        const initializeNews = async () => {
+            setIsLoading(true); // Start loading
+            try {
+                const cached = getCachedArticles();
+                if (cached.length > 0) {
+                    setArticles(cached);
+                }
 
-        // Load bookmarks
-        const storedBookmarks = localStorage.getItem('bookmarks');
-        if (storedBookmarks) {
-            setBookmarks(JSON.parse(storedBookmarks));
-        }
+                // Load bookmarks
+                const storedBookmarks = localStorage.getItem('bookmarks');
+                if (storedBookmarks) {
+                    setBookmarks(JSON.parse(storedBookmarks));
+                }
 
-        // Fetch fresh news in background
-        fetchAndCacheNews().then(updated => {
-            setArticles(updated);
-        });
+                // Fetch fresh news in background
+                const updated = await fetchAndCacheNews();
+                setArticles(updated);
+            } finally {
+                setIsLoading(false); // Stop loading regardless of result
+            }
+        };
+
+        initializeNews();
     }, []);
 
     // Apply filters and search
